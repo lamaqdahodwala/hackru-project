@@ -1,0 +1,30 @@
+{
+  "name": "humstudio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "node --test src/tests/*.test.ts"
+  },
+  "dependencies": {
+    "@tonejs/midi": "^2.0.28",
+    "next": "16.4.0",
+    "pitchy": "^4.1.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "smplr": "^1.1.0",
+    "tone": "^15.1.22"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.0",
+    "typescript": "^5"
+  }
+}

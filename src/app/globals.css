@@ -1,0 +1,1357 @@
+/* ponytail: the slice of Tailwind preflight this sheet relied on */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
+}
+h1,
+h2 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+}
+svg,
+canvas {
+  display: block;
+  vertical-align: middle;
+}
+
+:root {
+  --ground: #0d0d0d;
+  --panel: #161616;
+  --line: #262626;
+  --text: #f2f1ec;
+  --muted: #9a9a94;
+  --ink: #0d0d0d;
+  --rec: #ff4a3d;
+  --head: 232px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--ground);
+  color: var(--text);
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  caret-color: #f26b1d;
+  scrollbar-color: #333 transparent;
+}
+
+::selection {
+  background: #f26b1d;
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.studio {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Condensed display voice */
+.wordmark,
+.head-name,
+.big-name,
+.clip-label,
+.empty,
+.rec,
+.gen-title,
+.prompt p,
+.ruler-corner {
+  font-stretch: 62%;
+  text-transform: uppercase;
+}
+
+/* ---------- Transport ---------- */
+.transport {
+  min-height: 56px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 8px 16px 8px 0;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+.wordmark {
+  width: var(--head);
+  flex: none;
+  padding-left: 16px;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.wordmark span {
+  background: var(--text);
+  color: var(--ink);
+  padding: 0 5px 0 6px;
+  margin-right: 3px;
+}
+.transport-group {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.t-btn {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: #222;
+  color: var(--text);
+}
+.t-btn:hover:not(:disabled) {
+  background: #2e2e2e;
+}
+.t-btn.play {
+  background: var(--text);
+  color: var(--ink);
+}
+.position {
+  margin-left: 6px;
+  min-width: 72px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  background: var(--ground);
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+.transport-fields {
+  flex: none;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.field {
+  flex: none;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.harmony-field {
+  max-width: 100%;
+}
+.harmony-value {
+  margin-left: 0;
+  min-width: 0;
+  white-space: normal;
+}
+.field span {
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.field input,
+.field select {
+  height: 34px;
+  padding: 0 8px;
+  background: var(--ground);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+}
+.field select {
+  min-width: 0;
+  text-overflow: ellipsis;
+}
+.field input {
+  width: 64px;
+}
+.file-group {
+  flex: none;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.export {
+  flex: none;
+  height: 36px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #3a3a3a;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.export:hover:not(:disabled) {
+  border-color: var(--text);
+}
+
+/* ---------- Ruler ---------- */
+.ruler-row {
+  height: 28px;
+  flex: none;
+  display: grid;
+  grid-template-columns: var(--head) 1fr;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+.ruler-corner {
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 16px;
+  border-right: 1px solid var(--line);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 27px;
+  color: var(--muted);
+}
+.ruler {
+  position: relative;
+}
+.ruler span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding-left: 6px;
+  border-left: 1px solid #3a3a3a;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 27px;
+  color: var(--muted);
+}
+
+/* ---------- Learn ---------- */
+.t-btn.learn {
+  width: auto;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.note-label {
+  display: block;
+  padding-left: 3px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--flood);
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ---------- Rows ---------- */
+.rows {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: grid;
+  align-content: start;
+  transition: grid-template-rows 520ms var(--ease);
+}
+.row {
+  --bar: #2a2a2a;
+  --beat: #1a1a1a;
+  display: grid;
+  grid-template-columns: var(--head) 1fr;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  min-height: 0;
+}
+.row .lane {
+  transition: opacity 320ms ease;
+}
+.head {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px 0 16px;
+  background: var(--flood);
+  color: var(--ink);
+  border-right: 1px solid rgb(0 0 0 / 0.3);
+}
+.head :focus-visible {
+  outline-color: var(--ink);
+}
+.head-name {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 6px 0; /* room for the hover underline inside the clip */
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  text-align: left;
+}
+.head-name:hover:not(:disabled) {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+.head-name:disabled,
+.lane:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.ms {
+  margin-left: auto;
+  display: flex;
+  gap: 4px;
+}
+.ms button {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--ink);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.ms button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--flood);
+}
+/* Keep explanations inside the spine, including collapsed rows, without taking layout space. */
+.ms button::after {
+  content: attr(aria-label);
+  position: absolute;
+  right: calc(100% + 4px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  padding: 4px 6px;
+  background: var(--ink);
+  color: var(--flood);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+}
+.ms button:hover::after,
+.ms button:focus-visible::after {
+  opacity: 1;
+}
+
+.lane {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  text-align: left;
+  background-color: var(--ground);
+  background-image:
+    repeating-linear-gradient(90deg, var(--bar) 0 1px, transparent 1px 12.5%),
+    repeating-linear-gradient(90deg, var(--beat) 0 1px, transparent 1px 3.125%);
+}
+button.lane:hover:not(:disabled) {
+  box-shadow: inset 0 0 0 1px var(--flood);
+}
+button.lane:hover:not(:disabled) .empty {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 5px;
+}
+button.lane:focus-visible {
+  outline-offset: -2px;
+}
+.clip {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  overflow: hidden;
+  background: var(--flood);
+}
+.clip-label {
+  position: absolute;
+  right: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  top: 5px;
+  left: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--ink);
+}
+.clip.sample {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--flood);
+}
+.clip.sample .clip-label {
+  color: var(--flood);
+}
+.clip.sample .note {
+  background: var(--flood);
+  box-shadow: inset -1px 0 0 var(--ground);
+}
+.clip-notes {
+  position: absolute;
+  top: 24px;
+  bottom: 5px;
+}
+.note {
+  position: absolute;
+  min-width: 2px;
+  min-height: 5px;
+  background: var(--ink);
+  box-shadow: inset -1px 0 0 var(--flood);
+}
+.empty {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  color: var(--flood);
+}
+
+.row.collapsed .lane {
+  opacity: 0.45;
+}
+.row.collapsed:hover .lane {
+  opacity: 0.8;
+}
+.row.collapsed .head-name {
+  font-size: 16px;
+}
+.row.collapsed .clip {
+  top: 4px;
+  bottom: 4px;
+}
+.row.collapsed .clip-notes {
+  top: 3px;
+  bottom: 3px;
+}
+
+/* ---------- Zoomed: the flood ---------- */
+.row.zoomed {
+  --bar: rgb(0 0 0 / 0.3);
+  --beat: rgb(0 0 0 / 0.1);
+  color: var(--ink);
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.45);
+  position: relative;
+  z-index: 1;
+}
+.row.zoomed :focus-visible {
+  outline-color: var(--ink);
+}
+.row.zoomed .head {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: 14px 16px 16px;
+  background: var(--flood);
+  border-right: 1px solid rgb(0 0 0 / 0.3);
+  overflow-y: auto;
+}
+.row.zoomed .head > * {
+  flex-shrink: 0;
+}
+.back {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+.back:hover:not(:disabled) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.row.zoomed .head {
+  container-type: inline-size;
+}
+.big-name {
+  margin: 18px 0 0;
+  /* Leave room for the longest track name even when the font falls back. */
+  font-size: min(84px, 20cqw);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.005em;
+}
+.hint {
+  margin: 12px 0 0;
+  max-width: 22ch;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.sound-field {
+  margin-top: 14px;
+  min-width: 0;
+}
+.sound-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.sound-field select {
+  width: 100%;
+  min-width: 0;
+  height: 34px;
+  padding: 0 6px;
+  border: 1.5px solid var(--ink);
+  border-radius: 0;
+  background: var(--flood);
+  color: var(--ink);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+}
+.note-settings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+.note-settings label {
+  min-width: 0;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+.note-settings label span {
+  display: block;
+  margin-bottom: 4px;
+}
+.settings-feedback {
+  margin: 6px 0 0;
+  min-height: 3.6em;
+  font-size: 11px;
+  line-height: 1.2;
+}
+@container (max-width: 130px) {
+  .note-settings { grid-template-columns: 1fr; gap: 6px; }
+  .settings-feedback { min-height: 6em; }
+}
+.notes-area.copying {
+  overflow: hidden;
+  cursor: crosshair;
+}
+.copy-rect {
+  position: absolute;
+  z-index: 3;
+  border: 2px solid var(--ink);
+  background: rgb(242 241 236 / 0.2);
+  pointer-events: none;
+}
+.copy-group { cursor: grab; pointer-events: auto; }
+.note.copy-selected { outline: 2px solid var(--text); outline-offset: -2px; opacity: 1; }
+.notes-area.editable.on .note.copy-selected { cursor: grab; }
+.note.copy-ghost {
+  z-index: 4;
+  opacity: 0.45;
+  outline: 2px dashed var(--ink);
+  outline-offset: -2px;
+  pointer-events: none;
+}
+.copy-feedback {
+  position: absolute;
+  z-index: 5;
+  bottom: 6px;
+  left: 8px;
+  right: 8px;
+  margin: 0;
+  width: fit-content;
+  max-width: calc(100% - 16px);
+  font-size: 12px;
+  line-height: 1.25;
+  background: var(--flood);
+  pointer-events: none;
+}
+.copy-feedback:empty { display: none; }
+.sound-feedback {
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.sound-credits {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: inherit;
+  text-decoration: underline;
+}
+.sound-feedback p {
+  margin: 0;
+}
+.sound-retry {
+  margin-top: 6px;
+  text-decoration: underline;
+  font-weight: 700;
+}
+.sound-notice {
+  margin: 0;
+  padding: 6px 16px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--text);
+  background: var(--panel);
+}
+.rec-controls {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.rec {
+  height: 46px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.rec svg {
+  color: var(--rec);
+}
+.rec.on {
+  background: var(--text);
+  color: var(--ink);
+}
+.rec.on svg {
+  color: var(--ink);
+}
+.ghost-btn {
+  height: 34px;
+  padding: 0 14px;
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.ghost-btn:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--flood);
+}
+.part-actions {
+  display: flex;
+  gap: 8px;
+}
+.part-actions .ghost-btn {
+  flex: 1;
+  min-width: 0;
+  height: 30px;
+  padding: 0 6px;
+  font-size: 11px;
+}
+.status {
+  margin: 4px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.mark {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border: 2px solid var(--ink);
+}
+.mark.live {
+  background: var(--ink);
+  animation: pulse 1s steps(2, jump-none) infinite;
+}
+
+.lane.flood {
+  background-color: var(--flood);
+  container-type: inline-size;
+}
+.lane.flood > .pitch-labels,
+.lane.flood > .notes-area,
+.lane.flood > .spec-wrap {
+  position: absolute;
+  inset: 14px 0;
+}
+/* One line under every pitch (or drum) row, on the same boundary as the C labels' rule. */
+.pitch-labels {
+  --row: calc(100% / var(--rows));
+  pointer-events: none;
+  background: repeating-linear-gradient(to bottom, transparent 0 calc(var(--row) - 1px), rgb(0 0 0 / 0.08) calc(var(--row) - 1px) var(--row));
+}
+.pitch-labels span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  border-bottom: 1px solid rgb(0 0 0 / 0.16);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.pitch-labels span.selected {
+  background: rgb(0 0 0 / 0.08);
+}
+.pitch-labels span.selected b {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* Above the notes, so a note on beat 1 can't hide its row's name. */
+.pitch-labels b {
+  position: relative;
+  z-index: 1;
+  padding: 1px 3px;
+  background: var(--flood);
+  line-height: 1;
+  white-space: nowrap;
+}
+/* Learn labels every note with its pitch, so there a note may cover its row's name instead of colliding with it. */
+.lane.labeled .pitch-labels b {
+  z-index: auto;
+}
+.lane.flood .note {
+  box-shadow: inset -1px 0 0 var(--flood);
+}
+.note.set {
+  animation: set-in 380ms var(--ease) var(--d) both;
+}
+.spec-wrap {
+  transition: opacity 700ms ease;
+}
+.spec-wrap.dim {
+  opacity: 0.35;
+}
+.spec-wrap.ghost {
+  opacity: 0.16;
+}
+.spectrogram {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.generating {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 12px 28px 6%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+.gen-title {
+  margin: 0;
+  font-size: clamp(28px, 8cqw, 6rem);
+  font-weight: 900;
+  line-height: 0.82;
+  font-stretch: 62%;
+  text-transform: uppercase;
+}
+.gen-stage {
+  margin: 14px 0 0;
+  font-size: clamp(13px, 2.4cqw, 17px);
+  font-weight: 600;
+}
+.sweep {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--ink);
+  animation: sweep 1.6s linear forwards, fade 300ms ease 1.6s forwards;
+}
+.prompt {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 12px;
+  text-align: center;
+  pointer-events: none;
+  z-index: 2;
+}
+.prompt p {
+  margin: 0;
+  font-size: clamp(24px, 9cqw, 96px);
+  font-weight: 900;
+  line-height: 0.85;
+  text-wrap: balance;
+}
+.prompt > span {
+  font-size: 14px;
+  font-weight: 500;
+}
+.prompt.error {
+  pointer-events: auto;
+}
+.prompt.error p {
+  max-width: 20ch;
+  font-size: clamp(20px, 5cqw, 44px);
+  line-height: 0.95;
+}
+.prompt-actions {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ---------- Playhead ---------- */
+.playhead-track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--head);
+  right: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--text);
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.4);
+}
+
+/* Learn, inside the zoomed track: chords on the bar grid, key and role in the spine, live pitch. */
+.lane-chords {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+  color: var(--ink);
+}
+.lane-chords li {
+  position: absolute;
+  top: 0;
+  max-width: 12.5%;
+  overflow: hidden;
+  height: 14px;
+  padding: 0 5px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 14px;
+  white-space: nowrap;
+}
+.lane-chords b {
+  font-size: 11px;
+  font-weight: 800;
+}
+.lane-chords li.now {
+  background: var(--ink);
+  color: var(--flood);
+}
+.lane-chords.stamp li {
+  animation: stamp 260ms var(--ease) var(--d) both;
+}
+.theory {
+  margin: 12px 0 0;
+  display: grid;
+  gap: 4px;
+}
+.theory div {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  align-items: baseline;
+}
+.theory dt {
+  min-width: 34px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.theory dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+}
+.live-pitch {
+  position: absolute;
+  top: 22px;
+  right: 16px;
+  z-index: 2;
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+  color: var(--ink);
+  pointer-events: none;
+}
+.live-pitch b {
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 0.9;
+}
+.live-pitch > span {
+  font-size: 12px;
+  font-weight: 700;
+}
+.tune {
+  position: relative;
+  width: 120px;
+  height: 10px;
+  margin-top: 4px;
+  border-bottom: 1.5px solid var(--ink);
+  background: linear-gradient(var(--ink), var(--ink)) center / 1.5px 100% no-repeat;
+}
+.needle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  margin-left: -2px;
+  background: var(--ink);
+  transition: left 80ms linear;
+}
+
+/* Keyboard shortcuts */
+.help {
+  margin: auto;
+  width: min(440px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  padding: 20px;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+.help::backdrop {
+  background: rgb(0 0 0 / 0.6);
+}
+.help h2 {
+  margin-bottom: 14px;
+  font-size: 28px;
+  font-weight: 900;
+  font-stretch: 62%;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.help dl {
+  display: grid;
+  gap: 6px;
+}
+.help dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 14px;
+}
+.help dd {
+  color: var(--muted);
+  text-align: right;
+}
+.help kbd {
+  font: inherit;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.help p {
+  margin: 14px 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.help .ghost-btn {
+  border-color: var(--text);
+  color: var(--text);
+}
+.help .ghost-btn:hover {
+  background: var(--text);
+  color: var(--ink);
+}
+
+/* Theory agent (dialog reuses .help chrome) */
+.theory .ghost-btn {
+  width: 100%;
+  min-width: 0;
+  padding: 0 8px;
+}
+.theory-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.theory-dialog .theory-key {
+  margin: -6px 0 14px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+  flex: none;
+}
+/* The reading pane: a long, scrollable window so the whole answer stays reachable. */
+.theory-dialog .theory-output {
+  flex: 1 1 auto;
+  min-height: 140px;
+  max-height: min(58vh, 460px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  background: var(--ground);
+}
+.theory-dialog .theory-output:focus-visible {
+  outline-offset: 0;
+}
+.theory-dialog .theory-status {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.theory-dialog .theory-status p {
+  margin: 0 0 10px;
+}
+.theory-dialog .theory-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.theory-dialog .theory-caveat {
+  margin: 14px 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted);
+  flex: none;
+}
+.theory-dialog > .ghost-btn {
+  flex: none;
+}
+
+/* Editing in the zoomed lane */
+.notes-area.editable.on {
+  cursor: crosshair;
+  touch-action: none;
+}
+.notes-area.editable.on .note {
+  cursor: grab;
+}
+.note.background {
+  opacity: 0.65;
+}
+.notes-area.editable.on .note.background {
+  cursor: default;
+}
+.notes-area.editable .note.dragging {
+  cursor: grabbing;
+  opacity: 0.7;
+}
+/* Stretch handles on both ends: up to 12px, but never more than a quarter of a short note, so it can still be moved. */
+.note-edge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(10px, 25%);
+  cursor: ew-resize;
+}
+.note-edge.start {
+  right: auto;
+  left: 0;
+}
+.notes-area.editable.on .note:hover .note-edge,
+.notes-area.editable .note.dragging .note-edge {
+  background: color-mix(in srgb, var(--flood) 45%, transparent);
+}
+.lane.flood .note:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* Generation: raw hummed notes print in, then slide to their fitted places */
+.note.raw {
+  opacity: 0.6;
+}
+.note.snap {
+  transition: left 700ms var(--ease), top 700ms var(--ease), width 700ms var(--ease), opacity 400ms ease;
+}
+.note.snap.gone {
+  animation: fade 400ms ease forwards;
+}
+.generating .gen-title {
+  transform-origin: left bottom;
+  animation: stamp 260ms var(--ease) both;
+}
+
+@keyframes stamp {
+  from { opacity: 0; transform: scale(1.15); }
+}
+@keyframes set-in {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0); }
+}
+@keyframes sweep {
+  from { left: 0; }
+  to { left: var(--end, 100%); }
+}
+@keyframes fade {
+  to { opacity: 0; }
+}
+@keyframes pulse {
+  50% { opacity: 0.2; }
+}
+
+/* Header squeeze, widest first: drop the chord readout, stack field labels, shorten Export, then the rest.
+   The header only wraps on narrow screens, and then into fixed rows. */
+@media (max-width: 1680px) {
+  .harmony-value {
+    display: none;
+  }
+}
+@media (max-width: 1540px) {
+  .field {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3px;
+  }
+  .field span {
+    font-size: 10px;
+    line-height: 1;
+  }
+  .field input,
+  .field select {
+    height: 30px;
+  }
+}
+@media (max-width: 1280px) {
+  .export .lbl {
+    display: none;
+  }
+  .export {
+    padding: 0 10px;
+  }
+}
+@media (max-width: 1180px) {
+  .wordmark {
+    width: auto;
+  }
+  .transport-group .position {
+    display: none;
+  }
+  .transport {
+    gap: 8px 10px;
+  }
+  .transport-fields {
+    gap: 10px;
+  }
+  .wordmark {
+    font-size: 20px;
+  }
+}
+/* Too narrow for one row: brand and transport on top; settings, then project actions (sharing a row when they fit). */
+@media (max-width: 1060px) {
+  .transport {
+    flex-wrap: wrap;
+    padding: 8px 12px;
+  }
+  .wordmark {
+    padding-left: 0;
+  }
+  .transport-fields {
+    order: 2;
+  }
+  .file-group {
+    order: 3;
+  }
+}
+/* Phone: brand and Export, then transport, then settings. */
+@media (max-width: 480px) {
+  .file-group {
+    order: 1;
+    gap: 4px;
+  }
+  .file-group .t-btn {
+    width: 32px;
+  }
+  .file-group .t-btn[aria-label="Keyboard shortcuts"] {
+    display: none; /* no keyboard on a phone */
+  }
+  .transport-group {
+    order: 2;
+    flex: 1 1 100%;
+  }
+  .transport-fields {
+    order: 3;
+    flex: 1 1 100%;
+  }
+  .transport-fields .field:not(:first-child) {
+    flex: 1 1 auto;
+  }
+  .t-btn.learn {
+    padding: 0 8px;
+  }
+  .transport-fields {
+    gap: 6px;
+  }
+  .field input,
+  .field select {
+    padding: 0 4px;
+    font-size: 14px;
+  }
+  .field input {
+    width: 52px;
+  }
+}
+
+/* Narrow lanes: chord names only, smaller live pitch. */
+@container (max-width: 560px) {
+  .lane-chords li span {
+    display: none;
+  }
+  .live-pitch b {
+    font-size: 28px;
+  }
+  .tune {
+    width: 80px;
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --head: 104px;
+  }
+  .wordmark {
+    font-size: 18px;
+  }
+  .ms {
+    display: none;
+  }
+  .theory div {
+    display: grid;
+  }
+  .head {
+    padding: 0 8px 0 10px;
+    gap: 6px;
+  }
+  .head-name {
+    font-size: 18px;
+  }
+  .row.zoomed .head {
+    padding: 10px;
+  }
+  .big-name {
+    margin-top: 10px;
+  }
+  .hint {
+    display: none;
+  }
+  .rec {
+    height: 40px;
+    padding: 0 4px;
+    gap: 4px;
+    font-size: 13px;
+  }
+  .rec svg {
+    width: 12px;
+    height: 12px;
+    flex: none;
+  }
+  /* The compact spine can wrap Re-record at its hyphen without clipping the action or shrinking its icon. */
+  .rec-controls .rec-label {
+    min-width: 0;
+    white-space: normal;
+    line-height: 1.1;
+  }
+  .part-actions {
+    flex-direction: column;
+  }
+  .part-actions .ghost-btn {
+    flex: none;
+  }
+  .ghost-btn {
+    padding: 0 6px;
+    font-size: 10px;
+  }
+  .ruler-corner {
+    padding-left: 10px;
+    font-size: 12px;
+  }
+  .ruler span {
+    font-size: 10px;
+    padding-left: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .sweep,
+  .needle {
+    display: none;
+  }
+}
